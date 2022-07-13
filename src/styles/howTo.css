@@ -2,11 +2,11 @@ html {
     background:url(https://raw.githubusercontent.com/TomKnn/EindopdrachtMoodAndFood/master/assets/backgroundFinal.png) no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 .logo {
     position: absolute;
-    max-width: 20%;
+    max-width: 18%;
     width: auto;
     height: auto;
     top: 100px;
@@ -15,10 +15,10 @@ html {
 }
 .olive{
     position: absolute;
-    max-width:20%;
+    max-width:19%;
     height: auto;
     width: auto;
-    top: 30%;
+    top: 36%;
     left: 1%;
     z-index: 2;
 }
@@ -28,16 +28,16 @@ html {
     rotation:30grad;
     height:auto;
     width: auto;
-    left:21%;
-    top: 38%;
+    left:19%;
+    top: 41%;
     z-index: 2;
 }
 .block{
     position: absolute;
-    max-width: 21%;
+    max-width: 20%;
     height:auto;
     width: auto;
-    top: 0%;
+    top: -1%;
     left: 1%;
     opacity: 70%;
     z-index: -1;
@@ -47,8 +47,8 @@ html {
     max-width: 23%;
     height:auto;
     width: auto;
-    left:25%;
-    top:20%;
+    left:23%;
+    top:24%;
 }
 .tekst {
     position: absolute;
@@ -56,22 +56,23 @@ html {
     height: auto;
     width: auto;
     opacity: 90%;
-    left: 25%;
-    top: 31%;
+    left: 22%;
+    top: 37%;
 }
 .emojis{
     position: absolute;
     max-width: 48%;
     height:auto;
     width: auto;
-    left:38%;
-    top: 37%;
+    left:34%;
+    top: 40%;
+    z-index: 2;
 }
 .kader{
     position: absolute;
-    max-width: 76%;
+    max-width: 73%;
     height:auto;
     width: auto;
-    left:21%;
-    top: 38%;
+    left:20%;
+    top: 42%;
 }

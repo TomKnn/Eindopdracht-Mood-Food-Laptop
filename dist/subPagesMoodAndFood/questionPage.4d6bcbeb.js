@@ -142,89 +142,15 @@
       this[globalName] = mainExports;
     }
   }
-})({"fcvSp":[function(require,module,exports) {
+})({"8TtF2":[function(require,module,exports) {
 "use strict";
+var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "bed887d14d6bcbeb";
-function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-    if (!it) {
-        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-            if (it) o = it;
-            var i = 0;
-            var F = function F() {
-            };
-            return {
-                s: F,
-                n: function n() {
-                    if (i >= o.length) return {
-                        done: true
-                    };
-                    return {
-                        done: false,
-                        value: o[i++]
-                    };
-                },
-                e: function e(_e) {
-                    throw _e;
-                },
-                f: F
-            };
-        }
-        throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-    }
-    var normalCompletion = true, didErr = false, err;
-    return {
-        s: function s() {
-            it = it.call(o);
-        },
-        n: function n() {
-            var step = it.next();
-            normalCompletion = step.done;
-            return step;
-        },
-        e: function e(_e2) {
-            didErr = true;
-            err = _e2;
-        },
-        f: function f() {
-            try {
-                if (!normalCompletion && it.return != null) it.return();
-            } finally{
-                if (didErr) throw err;
-            }
-        }
-    };
-}
-function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
-}
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -251,12 +177,25 @@ interface ParcelModule {
     _disposeCallbacks: Array<(mixed) => void>,
   |};
 }
+interface ExtensionContext {
+  runtime: {|
+    reload(): void,
+    getURL(url: string): string;
+    getManifest(): {manifest_version: number, ...};
+  |};
+}
 declare var module: {bundle: ParcelRequire, ...};
 declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
-*/ var OVERLAY_ID = '__parcel__error__overlay__';
+declare var chrome: ExtensionContext;
+declare var browser: ExtensionContext;
+declare var __parcel__import__: (string) => Promise<void>;
+declare var __parcel__importScripts__: (string) => Promise<void>;
+declare var globalThis: typeof self;
+declare var ServiceWorkerGlobalScope: Object;
+*/ var OVERLAY_ID = "__parcel__error__overlay__";
 var OldModule = module.bundle.Module;
 function Module(moduleName) {
     OldModule.call(this, moduleName);
@@ -264,72 +203,66 @@ function Module(moduleName) {
         data: module.bundle.hotData,
         _acceptCallbacks: [],
         _disposeCallbacks: [],
-        accept: function accept(fn) {
-            this._acceptCallbacks.push(fn || function() {
-            });
+        accept: function(fn) {
+            this._acceptCallbacks.push(fn || function() {});
         },
-        dispose: function dispose(fn) {
+        dispose: function(fn) {
             this._disposeCallbacks.push(fn);
         }
     };
     module.bundle.hotData = undefined;
 }
 module.bundle.Module = Module;
-var checkedAssets, acceptedAssets, assetsToAccept;
+var checkedAssets, acceptedAssets, assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
 function getHostname() {
-    return HMR_HOST || (location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
+    return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
 }
 function getPort() {
     return HMR_PORT || location.port;
 } // eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == 'https:' && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? 'wss' : 'ws';
-    var ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/'); // $FlowFixMe
-    ws.onmessage = function(event) {
-        checkedAssets = {
-        };
-        acceptedAssets = {
-        };
+    var protocol = HMR_SECURE || location.protocol == "https:" && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? "wss" : "ws";
+    var ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/"); // Web extension context
+    var extCtx = typeof chrome === "undefined" ? typeof browser === "undefined" ? null : browser : chrome; // Safari doesn't support sourceURL in error stacks.
+    // eval may also be disabled via CSP, so do a quick check.
+    var supportsSourceURL = false;
+    try {
+        (0, eval)('throw new Error("test"); //# sourceURL=test.js');
+    } catch (err) {
+        supportsSourceURL = err.stack.includes("test.js");
+    } // $FlowFixMe
+    ws.onmessage = async function(event) {
+        checkedAssets = {} /*: {|[string]: boolean|} */ ;
+        acceptedAssets = {} /*: {|[string]: boolean|} */ ;
         assetsToAccept = [];
         var data = JSON.parse(event.data);
-        if (data.type === 'update') {
+        if (data.type === "update") {
             // Remove error overlay if there is one
-            if (typeof document !== 'undefined') removeErrorOverlay();
-            var assets = data.assets.filter(function(asset) {
-                return asset.envHash === HMR_ENV_HASH;
-            }); // Handle HMR Update
-            var handled = assets.every(function(asset) {
-                return asset.type === 'css' || asset.type === 'js' && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+            if (typeof document !== "undefined") removeErrorOverlay();
+            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH); // Handle HMR Update
+            let handled = assets.every((asset)=>{
+                return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
             });
             if (handled) {
-                console.clear();
-                assets.forEach(function(asset) {
-                    hmrApply(module.bundle.root, asset);
-                });
+                console.clear(); // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
+                if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
+                await hmrApplyUpdates(assets);
                 for(var i = 0; i < assetsToAccept.length; i++){
                     var id = assetsToAccept[i][1];
                     if (!acceptedAssets[id]) hmrAcceptRun(assetsToAccept[i][0], id);
                 }
-            } else window.location.reload();
+            } else fullReload();
         }
-        if (data.type === 'error') {
+        if (data.type === "error") {
             // Log parcel errors to console
-            var _iterator = _createForOfIteratorHelper(data.diagnostics.ansi), _step;
-            try {
-                for(_iterator.s(); !(_step = _iterator.n()).done;){
-                    var ansiDiagnostic = _step.value;
-                    var stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
-                    console.error('🚨 [parcel]: ' + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
-                }
-            } catch (err) {
-                _iterator.e(err);
-            } finally{
-                _iterator.f();
+            for (let ansiDiagnostic of data.diagnostics.ansi){
+                let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + "\n" + stack + "\n\n" + ansiDiagnostic.hints.join("\n"));
             }
-            if (typeof document !== 'undefined') {
+            if (typeof document !== "undefined") {
                 // Render the fancy html overlay
                 removeErrorOverlay();
                 var overlay = createErrorOverlay(data.diagnostics.html); // $FlowFixMe
@@ -341,37 +274,46 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         console.error(e.message);
     };
     ws.onclose = function() {
-        console.warn('[parcel] 🚨 Connection to the HMR server was lost');
+        console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
     };
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log('[parcel] ✨ Error resolved');
+        console.log("[parcel] \u2728 Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
-    var overlay = document.createElement('div');
+    var overlay = document.createElement("div");
     overlay.id = OVERLAY_ID;
-    var errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
-    var _iterator2 = _createForOfIteratorHelper(diagnostics), _step2;
-    try {
-        for(_iterator2.s(); !(_step2 = _iterator2.n()).done;){
-            var diagnostic = _step2.value;
-            var stack = diagnostic.codeframe ? diagnostic.codeframe : diagnostic.stack;
-            errorHTML += "\n      <div>\n        <div style=\"font-size: 18px; font-weight: bold; margin-top: 20px;\">\n          \uD83D\uDEA8 ".concat(diagnostic.message, "\n        </div>\n        <pre>").concat(stack, "</pre>\n        <div>\n          ").concat(diagnostic.hints.map(function(hint) {
-                return '<div>💡 ' + hint + '</div>';
-            }).join(''), "\n        </div>\n        ").concat(diagnostic.documentation ? "<div>\uD83D\uDCDD <a style=\"color: violet\" href=\"".concat(diagnostic.documentation, "\" target=\"_blank\">Learn more</a></div>") : '', "\n      </div>\n    ");
-        }
-    } catch (err) {
-        _iterator2.e(err);
-    } finally{
-        _iterator2.f();
+    let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
+    for (let diagnostic of diagnostics){
+        let stack = diagnostic.frames.length ? diagnostic.frames.reduce((p, frame)=>{
+            return `${p}
+<a href="/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
+${frame.code}`;
+        }, "") : diagnostic.stack;
+        errorHTML += `
+      <div>
+        <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+          🚨 ${diagnostic.message}
+        </div>
+        <pre>${stack}</pre>
+        <div>
+          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
+        </div>
+        ${diagnostic.documentation ? `<div>📝 <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+      </div>
+    `;
     }
-    errorHTML += '</div>';
+    errorHTML += "</div>";
     overlay.innerHTML = errorHTML;
     return overlay;
+}
+function fullReload() {
+    if ("reload" in location) location.reload();
+    else if (extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
 }
 function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     var modules = bundle.modules;
@@ -394,7 +336,7 @@ function updateLink(link) {
         if (link.parentNode !== null) // $FlowFixMe
         link.parentNode.removeChild(link);
     };
-    newLink.setAttribute('href', link.getAttribute('href').split('?')[0] + '?' + Date.now()); // $FlowFixMe
+    newLink.setAttribute("href", link.getAttribute("href").split("?")[0] + "?" + Date.now()); // $FlowFixMe
     link.parentNode.insertBefore(newLink, link.nextSibling);
 }
 var cssTimeout = null;
@@ -404,33 +346,105 @@ function reloadCSS() {
         var links = document.querySelectorAll('link[rel="stylesheet"]');
         for(var i = 0; i < links.length; i++){
             // $FlowFixMe[incompatible-type]
-            var href = links[i].getAttribute('href');
+            var href = links[i].getAttribute("href");
             var hostname = getHostname();
-            var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
-            var absolute = /^https?:\/\//i.test(href) && href.indexOf(window.location.origin) !== 0 && !servedFromHMRServer;
+            var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
+            var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
             if (!absolute) updateLink(links[i]);
         }
         cssTimeout = null;
     }, 50);
 }
+function hmrDownload(asset) {
+    if (asset.type === "js") {
+        if (typeof document !== "undefined") {
+            let script = document.createElement("script");
+            script.src = asset.url + "?t=" + Date.now();
+            if (asset.outputFormat === "esmodule") script.type = "module";
+            return new Promise((resolve, reject)=>{
+                var _document$head;
+                script.onload = ()=>resolve(script);
+                script.onerror = reject;
+                (_document$head = document.head) === null || _document$head === void 0 || _document$head.appendChild(script);
+            });
+        } else if (typeof importScripts === "function") {
+            // Worker scripts
+            if (asset.outputFormat === "esmodule") return import(asset.url + "?t=" + Date.now());
+            else return new Promise((resolve, reject)=>{
+                try {
+                    importScripts(asset.url + "?t=" + Date.now());
+                    resolve();
+                } catch (err) {
+                    reject(err);
+                }
+            });
+        }
+    }
+}
+async function hmrApplyUpdates(assets) {
+    global.parcelHotUpdate = Object.create(null);
+    let scriptsToRemove;
+    try {
+        // If sourceURL comments aren't supported in eval, we need to load
+        // the update from the dev server over HTTP so that stack traces
+        // are correct in errors/logs. This is much slower than eval, so
+        // we only do it if needed (currently just Safari).
+        // https://bugs.webkit.org/show_bug.cgi?id=137297
+        // This path is also taken if a CSP disallows eval.
+        if (!supportsSourceURL) {
+            let promises = assets.map((asset)=>{
+                var _hmrDownload;
+                return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
+                    // Web extension bugfix for Chromium
+                    // https://bugs.chromium.org/p/chromium/issues/detail?id=1255412#c12
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3) {
+                        if (typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                            extCtx.runtime.reload();
+                            return;
+                        }
+                        asset.url = extCtx.runtime.getURL("/__parcel_hmr_proxy__?url=" + encodeURIComponent(asset.url + "?t=" + Date.now()));
+                        return hmrDownload(asset);
+                    }
+                    throw err;
+                });
+            });
+            scriptsToRemove = await Promise.all(promises);
+        }
+        assets.forEach(function(asset) {
+            hmrApply(module.bundle.root, asset);
+        });
+    } finally{
+        delete global.parcelHotUpdate;
+        if (scriptsToRemove) scriptsToRemove.forEach((script)=>{
+            if (script) {
+                var _document$head2;
+                (_document$head2 = document.head) === null || _document$head2 === void 0 || _document$head2.removeChild(script);
+            }
+        });
+    }
+}
 function hmrApply(bundle, asset) {
     var modules = bundle.modules;
     if (!modules) return;
-    if (asset.type === 'css') reloadCSS();
-    else if (asset.type === 'js') {
-        var deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
+    if (asset.type === "css") reloadCSS();
+    else if (asset.type === "js") {
+        let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
         if (deps) {
             if (modules[asset.id]) {
                 // Remove dependencies that are removed and will become orphaned.
                 // This is necessary so that if the asset is added back again, the cache is gone, and we prevent a full page reload.
-                var oldDeps = modules[asset.id][1];
-                for(var dep in oldDeps)if (!deps[dep] || deps[dep] !== oldDeps[dep]) {
-                    var id = oldDeps[dep];
-                    var parents = getParents(module.bundle.root, id);
+                let oldDeps = modules[asset.id][1];
+                for(let dep in oldDeps)if (!deps[dep] || deps[dep] !== oldDeps[dep]) {
+                    let id = oldDeps[dep];
+                    let parents = getParents(module.bundle.root, id);
                     if (parents.length === 1) hmrDelete(module.bundle.root, id);
                 }
             }
-            var fn = new Function('require', 'module', 'exports', asset.output);
+            if (supportsSourceURL) // Global eval. We would use `new Function` here but browser
+            // support for source maps is better with eval.
+            (0, eval)(asset.output);
+             // $FlowFixMe
+            let fn = global.parcelHotUpdate[asset.id];
             modules[asset.id] = [
                 fn,
                 deps
@@ -439,19 +453,19 @@ function hmrApply(bundle, asset) {
     }
 }
 function hmrDelete(bundle, id1) {
-    var modules = bundle.modules;
+    let modules = bundle.modules;
     if (!modules) return;
     if (modules[id1]) {
         // Collect dependencies that will become orphaned when this module is deleted.
-        var deps = modules[id1][1];
-        var orphans = [];
-        for(var dep in deps){
-            var parents = getParents(module.bundle.root, deps[dep]);
+        let deps = modules[id1][1];
+        let orphans = [];
+        for(let dep in deps){
+            let parents = getParents(module.bundle.root, deps[dep]);
             if (parents.length === 1) orphans.push(deps[dep]);
         } // Delete the module. This must be done before deleting dependencies in case of circular dependencies.
         delete modules[id1];
         delete bundle.cache[id1]; // Now delete the orphans.
-        orphans.forEach(function(id) {
+        orphans.forEach((id)=>{
             hmrDelete(module.bundle.root, id);
         });
     } else if (bundle.parent) hmrDelete(bundle.parent, id1);
@@ -459,22 +473,22 @@ function hmrDelete(bundle, id1) {
 function hmrAcceptCheck(bundle, id, depsByBundle) {
     if (hmrAcceptCheckOne(bundle, id, depsByBundle)) return true;
      // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
-    var parents = getParents(module.bundle.root, id);
-    var accepted = false;
+    let parents = getParents(module.bundle.root, id);
+    let accepted = false;
     while(parents.length > 0){
-        var v = parents.shift();
-        var a = hmrAcceptCheckOne(v[0], v[1], null);
+        let v = parents.shift();
+        let a = hmrAcceptCheckOne(v[0], v[1], null);
         if (a) // If this parent accepts, stop traversing upward, but still consider siblings.
         accepted = true;
         else {
             // Otherwise, queue the parents in the next level upward.
-            var p = getParents(module.bundle.root, v[1]);
+            let p = getParents(module.bundle.root, v[1]);
             if (p.length === 0) {
                 // If there are no parents, then we've reached an entry without accepting. Reload.
                 accepted = false;
                 break;
             }
-            parents.push.apply(parents, _toConsumableArray(p));
+            parents.push(...p);
         }
     }
     return accepted;
@@ -499,8 +513,7 @@ function hmrAcceptCheckOne(bundle, id, depsByBundle) {
 }
 function hmrAcceptRun(bundle, id) {
     var cached = bundle.cache[id];
-    bundle.hotData = {
-    };
+    bundle.hotData = {};
     if (cached && cached.hot) cached.hot.data = bundle.hotData;
     if (cached && cached.hot && cached.hot._disposeCallbacks.length) cached.hot._disposeCallbacks.forEach(function(cb) {
         cb(bundle.hotData);
@@ -523,7 +536,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 // IMPORTEER VARIABELEN
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-const container = document.getElementById('result');
+const container = document.getElementById("result");
 // IMPORTEER FUNCTIES EMOJI SELECTIE
 // import getHappyAndNeutralEndpoint from ".javascript/emojiSelection/functionHappyAndNeutralEmotion";
 // IMPORTEER fetchApiData
@@ -534,51 +547,51 @@ const container = document.getElementById('result');
 // createCuisineChecklist();
 // FUNCTIES AANROEPEN
 // Image/checkboxes van click functie voorzien
-const jesus = document.getElementById('jesus');
-jesus.addEventListener('click', function() {
-    console.log('test');
+const jesus = document.getElementById("jesus");
+jesus.addEventListener("click", function() {
+    console.log("test");
 });
-const hitler = document.getElementById('hitler');
-hitler.addEventListener('click', function() {
-    console.log('test1');
+const hitler = document.getElementById("hitler");
+hitler.addEventListener("click", function() {
+    console.log("test1");
 });
-const robot = document.getElementById('robot');
-robot.addEventListener('click', function() {
-    console.log('test3');
+const robot = document.getElementById("robot");
+robot.addEventListener("click", function() {
+    console.log("test3");
 });
-const gypsyKid = document.getElementById('gypsyKid');
-gypsyKid.addEventListener('click', function() {
-    console.log('test4');
+const gypsyKid = document.getElementById("gypsyKid");
+gypsyKid.addEventListener("click", function() {
+    console.log("test4");
 });
-const manic = document.getElementById('manic');
-manic.addEventListener('click', function() {
-    console.log('test5');
+const manic = document.getElementById("manic");
+manic.addEventListener("click", function() {
+    console.log("test5");
 });
-const chillDude = document.getElementById('chillDude');
-chillDude.addEventListener('click', function() {
-    console.log('test6');
+const chillDude = document.getElementById("chillDude");
+chillDude.addEventListener("click", function() {
+    console.log("test6");
 });
-const wekker = document.getElementById('wekker');
-wekker.addEventListener('click', function() {
-    console.log('test7');
+const wekker = document.getElementById("wekker");
+wekker.addEventListener("click", function() {
+    console.log("test7");
 });
-const timebomb = document.getElementById('timebomb');
-timebomb.addEventListener('click', function() {
-    console.log('test8');
+const timebomb = document.getElementById("timebomb");
+timebomb.addEventListener("click", function() {
+    console.log("test8");
 });
 // If statement op de resultaatbutton plaatsen en voor elke combinatie een recipeCard aanroepen en in beeld brengen
-const button = document.getElementById('button');
-button.addEventListener('click', function() {
+const button = document.getElementById("button");
+button.addEventListener("click", function() {
     if (jesus.checked === true && chillDude.checked === true) {
         async function getRecipeByCard() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/716426/card?apiKey=d45e55edd78244c0913a0316171a6f71`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/716426/card?apiKey=d45e55edd78244c0913a0316171a6f71`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 image.innerHTML = `
         
     <img src="${recipe.url}" class="recipeCard"/>
@@ -592,15 +605,15 @@ button.addEventListener('click', function() {
         getRecipeByCard();
     }
     if (jesus.checked === true && wekker.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard1() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/716408/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/716408/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -613,18 +626,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard1();
     }
     if (jesus.checked === true && timebomb.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard2() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/715495/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/715495/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -637,18 +650,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard2();
     }
     if (hitler.checked === true && chillDude.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard3() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/640601/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/640601/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -661,18 +674,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard3();
     }
     if (hitler.checked === true && wekker.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard4() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/656819/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/656819/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -685,18 +698,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard4();
     }
     if (hitler.checked === true && timebomb.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard5() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/636326/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/636326/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -709,18 +722,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard5();
     }
     if (robot.checked === true && chillDude.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard6() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/632426/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/632426/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -733,18 +746,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard6();
     }
     if (robot.checked === true && wekker.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard7() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/1697683/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/1697683/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -757,18 +770,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard7();
     }
     if (robot.checked === true && timebomb.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard8() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/660525/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/660525/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -781,18 +794,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard8();
     }
     if (gypsyKid.checked === true && chillDude.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard9() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/639203/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/639203/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -805,18 +818,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard9();
     }
     if (gypsyKid.checked === true && wekker.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard10() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/655491/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/655491/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -829,18 +842,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard10();
     }
     if (gypsyKid.checked === true && timebomb.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard11() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/649596/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/649596/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -853,18 +866,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard11();
     }
     if (manic.checked === true && chillDude.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard12() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/644167/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/644167/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -877,18 +890,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard12();
     }
     if (manic.checked === true && wekker.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard13() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/716195/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/716195/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -901,18 +914,18 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
+        getRecipeByCard13();
     }
     if (manic.checked === true && timebomb.checked === true) {
-        async function getRecipeByCard() {
+        async function getRecipeByCard14() {
             try {
-                const result = await _axiosDefault.default.get(`https://api.spoonacular.com/recipes/644826/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
+                const result = await (0, _axiosDefault.default).get(`https://api.spoonacular.com/recipes/644826/card?apiKey=b4408aa9ab144e47ae2bf8eff93e72f5`, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 });
                 const recipe = result.data;
-                const image = document.createElement('p');
+                const image = document.createElement("p");
                 // const title = document.createElement('h3')
                 //title.innerHTML =  `<h3>${recipe.results[5].title}</h3>`
                 image.innerHTML = `
@@ -925,20 +938,20 @@ button.addEventListener('click', function() {
                 console.error(e);
             }
         }
-        getRecipeByCard();
-    } else console.log('niet gelukt');
+        getRecipeByCard14();
+    } else console.log("niet gelukt");
 });
 
 },{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
-module.exports = require('./lib/axios');
+module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
-'use strict';
-var utils = require('./utils');
-var bind = require('./helpers/bind');
-var Axios = require('./core/Axios');
-var mergeConfig = require('./core/mergeConfig');
-var defaults = require('./defaults');
+"use strict";
+var utils = require("./utils");
+var bind = require("./helpers/bind");
+var Axios = require("./core/Axios");
+var mergeConfig = require("./core/mergeConfig");
+var defaults = require("./defaults");
 /**
  * Create an instance of Axios
  *
@@ -962,24 +975,24 @@ var axios = createInstance(defaults);
 // Expose Axios class to allow class inheritance
 axios.Axios = Axios;
 // Expose Cancel & CancelToken
-axios.Cancel = require('./cancel/Cancel');
-axios.CancelToken = require('./cancel/CancelToken');
-axios.isCancel = require('./cancel/isCancel');
-axios.VERSION = require('./env/data').version;
+axios.Cancel = require("./cancel/Cancel");
+axios.CancelToken = require("./cancel/CancelToken");
+axios.isCancel = require("./cancel/isCancel");
+axios.VERSION = require("./env/data").version;
 // Expose all/spread
 axios.all = function all(promises) {
     return Promise.all(promises);
 };
-axios.spread = require('./helpers/spread');
+axios.spread = require("./helpers/spread");
 // Expose isAxiosError
-axios.isAxiosError = require('./helpers/isAxiosError');
+axios.isAxiosError = require("./helpers/isAxiosError");
 module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
 },{"./utils":"5By4s","./helpers/bind":"haRQb","./core/Axios":"cpqD8","./core/mergeConfig":"b85oP","./defaults":"hXfHM","./cancel/Cancel":"kjMy2","./cancel/CancelToken":"45wzn","./cancel/isCancel":"a0VmF","./env/data":"h29L9","./helpers/spread":"dyQ8N","./helpers/isAxiosError":"eyiLq"}],"5By4s":[function(require,module,exports) {
-'use strict';
-var bind = require('./helpers/bind');
+"use strict";
+var bind = require("./helpers/bind");
 // utils is a library of generic helper functions non-specific to axios
 var toString = Object.prototype.toString;
 /**
@@ -996,7 +1009,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if the value is undefined, otherwise false
  */ function isUndefined(val) {
-    return typeof val === 'undefined';
+    return typeof val === "undefined";
 }
 /**
  * Determine if a value is a Buffer
@@ -1004,7 +1017,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Buffer, otherwise false
  */ function isBuffer(val) {
-    return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+    return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && typeof val.constructor.isBuffer === "function" && val.constructor.isBuffer(val);
 }
 /**
  * Determine if a value is an ArrayBuffer
@@ -1012,7 +1025,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an ArrayBuffer, otherwise false
  */ function isArrayBuffer(val) {
-    return toString.call(val) === '[object ArrayBuffer]';
+    return toString.call(val) === "[object ArrayBuffer]";
 }
 /**
  * Determine if a value is a FormData
@@ -1020,7 +1033,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an FormData, otherwise false
  */ function isFormData(val) {
-    return toString.call(val) === '[object FormData]';
+    return toString.call(val) === "[object FormData]";
 }
 /**
  * Determine if a value is a view on an ArrayBuffer
@@ -1029,7 +1042,7 @@ var toString = Object.prototype.toString;
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
  */ function isArrayBufferView(val) {
     var result;
-    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) result = ArrayBuffer.isView(val);
+    if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) result = ArrayBuffer.isView(val);
     else result = val && val.buffer && isArrayBuffer(val.buffer);
     return result;
 }
@@ -1039,7 +1052,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a String, otherwise false
  */ function isString(val) {
-    return typeof val === 'string';
+    return typeof val === "string";
 }
 /**
  * Determine if a value is a Number
@@ -1047,7 +1060,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Number, otherwise false
  */ function isNumber(val) {
-    return typeof val === 'number';
+    return typeof val === "number";
 }
 /**
  * Determine if a value is an Object
@@ -1055,7 +1068,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Object, otherwise false
  */ function isObject(val) {
-    return val !== null && typeof val === 'object';
+    return val !== null && typeof val === "object";
 }
 /**
  * Determine if a value is a plain Object
@@ -1063,7 +1076,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @return {boolean} True if value is a plain Object, otherwise false
  */ function isPlainObject(val) {
-    if (toString.call(val) !== '[object Object]') return false;
+    if (toString.call(val) !== "[object Object]") return false;
     var prototype = Object.getPrototypeOf(val);
     return prototype === null || prototype === Object.prototype;
 }
@@ -1073,7 +1086,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Date, otherwise false
  */ function isDate(val) {
-    return toString.call(val) === '[object Date]';
+    return toString.call(val) === "[object Date]";
 }
 /**
  * Determine if a value is a File
@@ -1081,7 +1094,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a File, otherwise false
  */ function isFile(val) {
-    return toString.call(val) === '[object File]';
+    return toString.call(val) === "[object File]";
 }
 /**
  * Determine if a value is a Blob
@@ -1089,7 +1102,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Blob, otherwise false
  */ function isBlob(val) {
-    return toString.call(val) === '[object Blob]';
+    return toString.call(val) === "[object Blob]";
 }
 /**
  * Determine if a value is a Function
@@ -1097,7 +1110,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Function, otherwise false
  */ function isFunction(val) {
-    return toString.call(val) === '[object Function]';
+    return toString.call(val) === "[object Function]";
 }
 /**
  * Determine if a value is a Stream
@@ -1113,7 +1126,7 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */ function isURLSearchParams(val) {
-    return toString.call(val) === '[object URLSearchParams]';
+    return toString.call(val) === "[object URLSearchParams]";
 }
 /**
  * Trim excess whitespace off the beginning and end of a string
@@ -1121,7 +1134,7 @@ var toString = Object.prototype.toString;
  * @param {String} str The String to trim
  * @returns {String} The String freed of excess whitespace
  */ function trim(str) {
-    return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, '');
+    return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, "");
 }
 /**
  * Determine if we're running in a standard browser environment
@@ -1138,8 +1151,8 @@ var toString = Object.prototype.toString;
  * nativescript
  *  navigator.product -> 'NativeScript' or 'NS'
  */ function isStandardBrowserEnv() {
-    if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' || navigator.product === 'NativeScript' || navigator.product === 'NS')) return false;
-    return typeof window !== 'undefined' && typeof document !== 'undefined';
+    if (typeof navigator !== "undefined" && (navigator.product === "ReactNative" || navigator.product === "NativeScript" || navigator.product === "NS")) return false;
+    return typeof window !== "undefined" && typeof document !== "undefined";
 }
 /**
  * Iterate over an Array or an Object invoking a function for each item.
@@ -1154,9 +1167,9 @@ var toString = Object.prototype.toString;
  * @param {Function} fn The callback to invoke for each item
  */ function forEach(obj, fn) {
     // Don't bother if no value provided
-    if (obj === null || typeof obj === 'undefined') return;
+    if (obj === null || typeof obj === "undefined") return;
     // Force an array if not already something iterable
-    if (typeof obj !== 'object') /*eslint no-param-reassign:0*/ obj = [
+    if (typeof obj !== "object") /*eslint no-param-reassign:0*/ obj = [
         obj
     ];
     if (isArray(obj)) // Iterate over array values
@@ -1183,12 +1196,10 @@ var toString = Object.prototype.toString;
  * @param {Object} obj1 Object to merge
  * @returns {Object} Result of all merge properties
  */ function merge() {
-    var result = {
-    };
+    var result = {};
     function assignValue(val, key) {
         if (isPlainObject(result[key]) && isPlainObject(val)) result[key] = merge(result[key], val);
-        else if (isPlainObject(val)) result[key] = merge({
-        }, val);
+        else if (isPlainObject(val)) result[key] = merge({}, val);
         else if (isArray(val)) result[key] = val.slice();
         else result[key] = val;
     }
@@ -1204,7 +1215,7 @@ var toString = Object.prototype.toString;
  * @return {Object} The resulting value of object a
  */ function extend(a, b, thisArg) {
     forEach(b, function assignValue(val, key) {
-        if (thisArg && typeof val === 'function') a[key] = bind(val, thisArg);
+        if (thisArg && typeof val === "function") a[key] = bind(val, thisArg);
         else a[key] = val;
     });
     return a;
@@ -1215,7 +1226,7 @@ var toString = Object.prototype.toString;
  * @param {string} content with BOM
  * @return {string} content value without BOM
  */ function stripBOM(content) {
-    if (content.charCodeAt(0) === 65279) content = content.slice(1);
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
     return content;
 }
 module.exports = {
@@ -1244,7 +1255,7 @@ module.exports = {
 };
 
 },{"./helpers/bind":"haRQb"}],"haRQb":[function(require,module,exports) {
-'use strict';
+"use strict";
 module.exports = function bind(fn, thisArg) {
     return function wrap() {
         var args = new Array(arguments.length);
@@ -1254,13 +1265,13 @@ module.exports = function bind(fn, thisArg) {
 };
 
 },{}],"cpqD8":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
-var buildURL = require('../helpers/buildURL');
-var InterceptorManager = require('./InterceptorManager');
-var dispatchRequest = require('./dispatchRequest');
-var mergeConfig = require('./mergeConfig');
-var validator = require('../helpers/validator');
+"use strict";
+var utils = require("./../utils");
+var buildURL = require("../helpers/buildURL");
+var InterceptorManager = require("./InterceptorManager");
+var dispatchRequest = require("./dispatchRequest");
+var mergeConfig = require("./mergeConfig");
+var validator = require("../helpers/validator");
 var validators = validator.validators;
 /**
  * Create a new instance of Axios
@@ -1279,17 +1290,15 @@ var validators = validator.validators;
  * @param {Object} config The config specific for this request (merged with this.defaults)
  */ Axios.prototype.request = function request(configOrUrl, config) {
     /*eslint no-param-reassign:0*/ // Allow for axios('example/url'[, config]) a la fetch API
-    if (typeof configOrUrl === 'string') {
-        config = config || {
-        };
+    if (typeof configOrUrl === "string") {
+        config = config || {};
         config.url = configOrUrl;
-    } else config = configOrUrl || {
-    };
+    } else config = configOrUrl || {};
     config = mergeConfig(this.defaults, config);
     // Set config.method
     if (config.method) config.method = config.method.toLowerCase();
     else if (this.defaults.method) config.method = this.defaults.method.toLowerCase();
-    else config.method = 'get';
+    else config.method = "get";
     var transitional = config.transitional;
     if (transitional !== undefined) validator.assertOptions(transitional, {
         silentJSONParsing: validators.transitional(validators.boolean),
@@ -1300,7 +1309,7 @@ var validators = validator.validators;
     var requestInterceptorChain = [];
     var synchronousRequestInterceptors = true;
     this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-        if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) return;
+        if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) return;
         synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
         requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
     });
@@ -1341,33 +1350,30 @@ var validators = validator.validators;
 };
 Axios.prototype.getUri = function getUri(config) {
     config = mergeConfig(this.defaults, config);
-    return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
+    return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, "");
 };
 // Provide aliases for supported request methods
 utils.forEach([
-    'delete',
-    'get',
-    'head',
-    'options'
+    "delete",
+    "get",
+    "head",
+    "options"
 ], function forEachMethodNoData(method) {
     /*eslint func-names:0*/ Axios.prototype[method] = function(url, config) {
-        return this.request(mergeConfig(config || {
-        }, {
+        return this.request(mergeConfig(config || {}, {
             method: method,
             url: url,
-            data: (config || {
-            }).data
+            data: (config || {}).data
         }));
     };
 });
 utils.forEach([
-    'post',
-    'put',
-    'patch'
+    "post",
+    "put",
+    "patch"
 ], function forEachMethodWithData(method) {
     /*eslint func-names:0*/ Axios.prototype[method] = function(url, data, config) {
-        return this.request(mergeConfig(config || {
-        }, {
+        return this.request(mergeConfig(config || {}, {
             method: method,
             url: url,
             data: data
@@ -1377,10 +1383,10 @@ utils.forEach([
 module.exports = Axios;
 
 },{"./../utils":"5By4s","../helpers/buildURL":"3bwC2","./InterceptorManager":"1VRIM","./dispatchRequest":"6sjJ6","./mergeConfig":"b85oP","../helpers/validator":"9vgkY"}],"3bwC2":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 function encode(val) {
-    return encodeURIComponent(val).replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
+    return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
 }
 /**
  * Build a URL by appending params to the end
@@ -1396,30 +1402,30 @@ function encode(val) {
     else {
         var parts = [];
         utils.forEach(params, function serialize(val, key) {
-            if (val === null || typeof val === 'undefined') return;
-            if (utils.isArray(val)) key = key + '[]';
+            if (val === null || typeof val === "undefined") return;
+            if (utils.isArray(val)) key = key + "[]";
             else val = [
                 val
             ];
             utils.forEach(val, function parseValue(v) {
                 if (utils.isDate(v)) v = v.toISOString();
                 else if (utils.isObject(v)) v = JSON.stringify(v);
-                parts.push(encode(key) + '=' + encode(v));
+                parts.push(encode(key) + "=" + encode(v));
             });
         });
-        serializedParams = parts.join('&');
+        serializedParams = parts.join("&");
     }
     if (serializedParams) {
-        var hashmarkIndex = url.indexOf('#');
+        var hashmarkIndex = url.indexOf("#");
         if (hashmarkIndex !== -1) url = url.slice(0, hashmarkIndex);
-        url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+        url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
     }
     return url;
 };
 
 },{"./../utils":"5By4s"}],"1VRIM":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 function InterceptorManager() {
     this.handlers = [];
 }
@@ -1461,17 +1467,17 @@ function InterceptorManager() {
 module.exports = InterceptorManager;
 
 },{"./../utils":"5By4s"}],"6sjJ6":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
-var transformData = require('./transformData');
-var isCancel = require('../cancel/isCancel');
-var defaults = require('../defaults');
-var Cancel = require('../cancel/Cancel');
+"use strict";
+var utils = require("./../utils");
+var transformData = require("./transformData");
+var isCancel = require("../cancel/isCancel");
+var defaults = require("../defaults");
+var Cancel = require("../cancel/Cancel");
 /**
  * Throws a `Cancel` if cancellation has been requested.
  */ function throwIfCancellationRequested(config) {
     if (config.cancelToken) config.cancelToken.throwIfRequested();
-    if (config.signal && config.signal.aborted) throw new Cancel('canceled');
+    if (config.signal && config.signal.aborted) throw new Cancel("canceled");
 }
 /**
  * Dispatch a request to the server using the configured adapter.
@@ -1481,22 +1487,19 @@ var Cancel = require('../cancel/Cancel');
  */ module.exports = function dispatchRequest(config) {
     throwIfCancellationRequested(config);
     // Ensure headers exist
-    config.headers = config.headers || {
-    };
+    config.headers = config.headers || {};
     // Transform request data
     config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
     // Flatten headers
-    config.headers = utils.merge(config.headers.common || {
-    }, config.headers[config.method] || {
-    }, config.headers);
+    config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers);
     utils.forEach([
-        'delete',
-        'get',
-        'head',
-        'post',
-        'put',
-        'patch',
-        'common'
+        "delete",
+        "get",
+        "head",
+        "post",
+        "put",
+        "patch",
+        "common"
     ], function cleanHeaderConfig(method) {
         delete config.headers[method];
     });
@@ -1517,9 +1520,9 @@ var Cancel = require('../cancel/Cancel');
 };
 
 },{"./../utils":"5By4s","./transformData":"eRqJY","../cancel/isCancel":"a0VmF","../defaults":"hXfHM","../cancel/Cancel":"kjMy2"}],"eRqJY":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
-var defaults = require('../defaults');
+"use strict";
+var utils = require("./../utils");
+var defaults = require("../defaults");
 /**
  * Transform the data for a request or a response
  *
@@ -1536,24 +1539,24 @@ var defaults = require('../defaults');
 };
 
 },{"./../utils":"5By4s","../defaults":"hXfHM"}],"hXfHM":[function(require,module,exports) {
-'use strict';
+"use strict";
 var process = require("process");
-var utils = require('../utils');
-var normalizeHeaderName = require('../helpers/normalizeHeaderName');
-var enhanceError = require('../core/enhanceError');
-var transitionalDefaults = require('./transitional');
+var utils = require("../utils");
+var normalizeHeaderName = require("../helpers/normalizeHeaderName");
+var enhanceError = require("../core/enhanceError");
+var transitionalDefaults = require("./transitional");
 var DEFAULT_CONTENT_TYPE = {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    "Content-Type": "application/x-www-form-urlencoded"
 };
 function setContentTypeIfUnset(headers, value) {
-    if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) headers['Content-Type'] = value;
+    if (!utils.isUndefined(headers) && utils.isUndefined(headers["Content-Type"])) headers["Content-Type"] = value;
 }
 function getDefaultAdapter() {
     var adapter;
-    if (typeof XMLHttpRequest !== 'undefined') // For browsers use XHR adapter
-    adapter = require('../adapters/xhr');
-    else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') // For node use HTTP adapter
-    adapter = require('../adapters/http');
+    if (typeof XMLHttpRequest !== "undefined") // For browsers use XHR adapter
+    adapter = require("../adapters/xhr");
+    else if (typeof process !== "undefined" && Object.prototype.toString.call(process) === "[object process]") // For node use HTTP adapter
+    adapter = require("../adapters/http");
     return adapter;
 }
 function stringifySafely(rawValue, parser, encoder) {
@@ -1561,7 +1564,7 @@ function stringifySafely(rawValue, parser, encoder) {
         (parser || JSON.parse)(rawValue);
         return utils.trim(rawValue);
     } catch (e) {
-        if (e.name !== 'SyntaxError') throw e;
+        if (e.name !== "SyntaxError") throw e;
     }
     return (encoder || JSON.stringify)(rawValue);
 }
@@ -1570,16 +1573,16 @@ var defaults = {
     adapter: getDefaultAdapter(),
     transformRequest: [
         function transformRequest(data, headers) {
-            normalizeHeaderName(headers, 'Accept');
-            normalizeHeaderName(headers, 'Content-Type');
+            normalizeHeaderName(headers, "Accept");
+            normalizeHeaderName(headers, "Content-Type");
             if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) return data;
             if (utils.isArrayBufferView(data)) return data.buffer;
             if (utils.isURLSearchParams(data)) {
-                setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+                setContentTypeIfUnset(headers, "application/x-www-form-urlencoded;charset=utf-8");
                 return data.toString();
             }
-            if (utils.isObject(data) || headers && headers['Content-Type'] === 'application/json') {
-                setContentTypeIfUnset(headers, 'application/json');
+            if (utils.isObject(data) || headers && headers["Content-Type"] === "application/json") {
+                setContentTypeIfUnset(headers, "application/json");
                 return stringifySafely(data);
             }
             return data;
@@ -1590,12 +1593,12 @@ var defaults = {
             var transitional = this.transitional || defaults.transitional;
             var silentJSONParsing = transitional && transitional.silentJSONParsing;
             var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
-            var strictJSONParsing = !silentJSONParsing && this.responseType === 'json';
+            var strictJSONParsing = !silentJSONParsing && this.responseType === "json";
             if (strictJSONParsing || forcedJSONParsing && utils.isString(data) && data.length) try {
                 return JSON.parse(data);
             } catch (e) {
                 if (strictJSONParsing) {
-                    if (e.name === 'SyntaxError') throw enhanceError(e, this, 'E_JSON_PARSE');
+                    if (e.name === "SyntaxError") throw enhanceError(e, this, "E_JSON_PARSE");
                     throw e;
                 }
             }
@@ -1606,8 +1609,8 @@ var defaults = {
    * A timeout in milliseconds to abort a request. If set to 0 (default) a
    * timeout is not created.
    */ timeout: 0,
-    xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN',
+    xsrfCookieName: "XSRF-TOKEN",
+    xsrfHeaderName: "X-XSRF-TOKEN",
     maxContentLength: -1,
     maxBodyLength: -1,
     validateStatus: function validateStatus(status) {
@@ -1615,22 +1618,21 @@ var defaults = {
     },
     headers: {
         common: {
-            'Accept': 'application/json, text/plain, */*'
+            "Accept": "application/json, text/plain, */*"
         }
     }
 };
 utils.forEach([
-    'delete',
-    'get',
-    'head'
+    "delete",
+    "get",
+    "head"
 ], function forEachMethodNoData(method) {
-    defaults.headers[method] = {
-    };
+    defaults.headers[method] = {};
 });
 utils.forEach([
-    'post',
-    'put',
-    'patch'
+    "post",
+    "put",
+    "patch"
 ], function forEachMethodWithData(method) {
     defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
 });
@@ -1638,8 +1640,7 @@ module.exports = defaults;
 
 },{"process":"d5jf4","../utils":"5By4s","../helpers/normalizeHeaderName":"adBZo","../core/enhanceError":"itUQr","./transitional":"lM32f","../adapters/xhr":"ldm57","../adapters/http":"ldm57"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
-var process = module.exports = {
-};
+var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
 // wrapped in strict mode code which doesn't define any globals.  It's inside a
@@ -1647,20 +1648,20 @@ var process = module.exports = {
 var cachedSetTimeout;
 var cachedClearTimeout;
 function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
+    throw new Error("setTimeout has not been defined");
 }
 function defaultClearTimeout() {
-    throw new Error('clearTimeout has not been defined');
+    throw new Error("clearTimeout has not been defined");
 }
 (function() {
     try {
-        if (typeof setTimeout === 'function') cachedSetTimeout = setTimeout;
+        if (typeof setTimeout === "function") cachedSetTimeout = setTimeout;
         else cachedSetTimeout = defaultSetTimout;
     } catch (e) {
         cachedSetTimeout = defaultSetTimout;
     }
     try {
-        if (typeof clearTimeout === 'function') cachedClearTimeout = clearTimeout;
+        if (typeof clearTimeout === "function") cachedClearTimeout = clearTimeout;
         else cachedClearTimeout = defaultClearTimeout;
     } catch (e1) {
         cachedClearTimeout = defaultClearTimeout;
@@ -1750,16 +1751,13 @@ function Item(fun, array) {
 Item.prototype.run = function() {
     this.fun.apply(null, this.array);
 };
-process.title = 'browser';
+process.title = "browser";
 process.browser = true;
-process.env = {
-};
+process.env = {};
 process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {
-};
-function noop() {
-}
+process.version = ""; // empty string to avoid regexp issues
+process.versions = {};
+function noop() {}
 process.on = noop;
 process.addListener = noop;
 process.once = noop;
@@ -1773,21 +1771,21 @@ process.listeners = function(name) {
     return [];
 };
 process.binding = function(name) {
-    throw new Error('process.binding is not supported');
+    throw new Error("process.binding is not supported");
 };
 process.cwd = function() {
-    return '/';
+    return "/";
 };
 process.chdir = function(dir) {
-    throw new Error('process.chdir is not supported');
+    throw new Error("process.chdir is not supported");
 };
 process.umask = function() {
     return 0;
 };
 
 },{}],"adBZo":[function(require,module,exports) {
-'use strict';
-var utils = require('../utils');
+"use strict";
+var utils = require("../utils");
 module.exports = function normalizeHeaderName(headers, normalizedName) {
     utils.forEach(headers, function processHeader(value, name) {
         if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
@@ -1798,7 +1796,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 };
 
 },{"../utils":"5By4s"}],"itUQr":[function(require,module,exports) {
-'use strict';
+"use strict";
 /**
  * Update an Error with the specified config, error code, and response.
  *
@@ -1837,7 +1835,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 };
 
 },{}],"lM32f":[function(require,module,exports) {
-'use strict';
+"use strict";
 module.exports = {
     silentJSONParsing: true,
     forcedJSONParsing: true,
@@ -1845,17 +1843,17 @@ module.exports = {
 };
 
 },{}],"ldm57":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
-var settle = require('./../core/settle');
-var cookies = require('./../helpers/cookies');
-var buildURL = require('./../helpers/buildURL');
-var buildFullPath = require('../core/buildFullPath');
-var parseHeaders = require('./../helpers/parseHeaders');
-var isURLSameOrigin = require('./../helpers/isURLSameOrigin');
-var createError = require('../core/createError');
-var transitionalDefaults = require('../defaults/transitional');
-var Cancel = require('../cancel/Cancel');
+"use strict";
+var utils = require("./../utils");
+var settle = require("./../core/settle");
+var cookies = require("./../helpers/cookies");
+var buildURL = require("./../helpers/buildURL");
+var buildFullPath = require("../core/buildFullPath");
+var parseHeaders = require("./../helpers/parseHeaders");
+var isURLSameOrigin = require("./../helpers/isURLSameOrigin");
+var createError = require("../core/createError");
+var transitionalDefaults = require("../defaults/transitional");
+var Cancel = require("../cancel/Cancel");
 module.exports = function xhrAdapter(config) {
     return new Promise(function dispatchXhrRequest(resolve, reject) {
         var requestData = config.data;
@@ -1864,15 +1862,15 @@ module.exports = function xhrAdapter(config) {
         var onCanceled;
         function done() {
             if (config.cancelToken) config.cancelToken.unsubscribe(onCanceled);
-            if (config.signal) config.signal.removeEventListener('abort', onCanceled);
+            if (config.signal) config.signal.removeEventListener("abort", onCanceled);
         }
-        if (utils.isFormData(requestData)) delete requestHeaders['Content-Type']; // Let the browser set it
+        if (utils.isFormData(requestData)) delete requestHeaders["Content-Type"]; // Let the browser set it
         var request = new XMLHttpRequest();
         // HTTP basic authentication
         if (config.auth) {
-            var username = config.auth.username || '';
-            var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
-            requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+            var username = config.auth.username || "";
+            var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : "";
+            requestHeaders.Authorization = "Basic " + btoa(username + ":" + password);
         }
         var fullPath = buildFullPath(config.baseURL, config.url);
         request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
@@ -1881,8 +1879,8 @@ module.exports = function xhrAdapter(config) {
         function onloadend() {
             if (!request) return;
             // Prepare the response
-            var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-            var responseData = !responseType || responseType === 'text' || responseType === 'json' ? request.responseText : request.response;
+            var responseHeaders = "getAllResponseHeaders" in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+            var responseData = !responseType || responseType === "text" || responseType === "json" ? request.responseText : request.response;
             var response = {
                 data: responseData,
                 status: request.status,
@@ -1901,7 +1899,7 @@ module.exports = function xhrAdapter(config) {
             // Clean up request
             request = null;
         }
-        if ('onloadend' in request) // Use onloadend if available
+        if ("onloadend" in request) // Use onloadend if available
         request.onloadend = onloadend;
         else // Listen for ready state to emulate onloadend
         request.onreadystatechange = function handleLoad() {
@@ -1910,7 +1908,7 @@ module.exports = function xhrAdapter(config) {
             // handled by onerror instead
             // With one exception: request that using file: protocol, most browsers
             // will return status as 0 even though it's a successful request
-            if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) return;
+            if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf("file:") === 0)) return;
             // readystate handler is calling before onerror or ontimeout handlers,
             // so we should call onloadend on the next 'tick'
             setTimeout(onloadend);
@@ -1918,7 +1916,7 @@ module.exports = function xhrAdapter(config) {
         // Handle browser request cancellation (as opposed to a manual cancellation)
         request.onabort = function handleAbort() {
             if (!request) return;
-            reject(createError('Request aborted', config, 'ECONNABORTED', request));
+            reject(createError("Request aborted", config, "ECONNABORTED", request));
             // Clean up request
             request = null;
         };
@@ -1926,16 +1924,16 @@ module.exports = function xhrAdapter(config) {
         request.onerror = function handleError() {
             // Real errors are hidden from us by the browser
             // onerror should only fire if it's a network error
-            reject(createError('Network Error', config, null, request));
+            reject(createError("Network Error", config, null, request));
             // Clean up request
             request = null;
         };
         // Handle timeout
         request.ontimeout = function handleTimeout() {
-            var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+            var timeoutErrorMessage = config.timeout ? "timeout of " + config.timeout + "ms exceeded" : "timeout exceeded";
             var transitional = config.transitional || transitionalDefaults;
             if (config.timeoutErrorMessage) timeoutErrorMessage = config.timeoutErrorMessage;
-            reject(createError(timeoutErrorMessage, config, transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED', request));
+            reject(createError(timeoutErrorMessage, config, transitional.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", request));
             // Clean up request
             request = null;
         };
@@ -1948,8 +1946,8 @@ module.exports = function xhrAdapter(config) {
             if (xsrfValue) requestHeaders[config.xsrfHeaderName] = xsrfValue;
         }
         // Add headers to the request
-        if ('setRequestHeader' in request) utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-            if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') // Remove Content-Type if data is undefined
+        if ("setRequestHeader" in request) utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+            if (typeof requestData === "undefined" && key.toLowerCase() === "content-type") // Remove Content-Type if data is undefined
             delete requestHeaders[key];
             else // Otherwise add header to the request
             request.setRequestHeader(key, val);
@@ -1957,22 +1955,22 @@ module.exports = function xhrAdapter(config) {
         // Add withCredentials to request if needed
         if (!utils.isUndefined(config.withCredentials)) request.withCredentials = !!config.withCredentials;
         // Add responseType to request if needed
-        if (responseType && responseType !== 'json') request.responseType = config.responseType;
+        if (responseType && responseType !== "json") request.responseType = config.responseType;
         // Handle progress if needed
-        if (typeof config.onDownloadProgress === 'function') request.addEventListener('progress', config.onDownloadProgress);
+        if (typeof config.onDownloadProgress === "function") request.addEventListener("progress", config.onDownloadProgress);
         // Not all browsers support upload events
-        if (typeof config.onUploadProgress === 'function' && request.upload) request.upload.addEventListener('progress', config.onUploadProgress);
+        if (typeof config.onUploadProgress === "function" && request.upload) request.upload.addEventListener("progress", config.onUploadProgress);
         if (config.cancelToken || config.signal) {
             // Handle cancellation
             // eslint-disable-next-line func-names
             onCanceled = function(cancel) {
                 if (!request) return;
-                reject(!cancel || cancel && cancel.type ? new Cancel('canceled') : cancel);
+                reject(!cancel || cancel && cancel.type ? new Cancel("canceled") : cancel);
                 request.abort();
                 request = null;
             };
             config.cancelToken && config.cancelToken.subscribe(onCanceled);
-            if (config.signal) config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+            if (config.signal) config.signal.aborted ? onCanceled() : config.signal.addEventListener("abort", onCanceled);
         }
         if (!requestData) requestData = null;
         // Send the request
@@ -1981,8 +1979,8 @@ module.exports = function xhrAdapter(config) {
 };
 
 },{"./../utils":"5By4s","./../core/settle":"dD9aC","./../helpers/cookies":"4WJjt","./../helpers/buildURL":"3bwC2","../core/buildFullPath":"1I5TW","./../helpers/parseHeaders":"kqDd5","./../helpers/isURLSameOrigin":"lxXtv","../core/createError":"5nVS9","../defaults/transitional":"lM32f","../cancel/Cancel":"kjMy2"}],"dD9aC":[function(require,module,exports) {
-'use strict';
-var createError = require('./createError');
+"use strict";
+var createError = require("./createError");
 /**
  * Resolve or reject a Promise based on response status.
  *
@@ -1992,12 +1990,12 @@ var createError = require('./createError');
  */ module.exports = function settle(resolve, reject, response) {
     var validateStatus = response.config.validateStatus;
     if (!response.status || !validateStatus || validateStatus(response.status)) resolve(response);
-    else reject(createError('Request failed with status code ' + response.status, response.config, null, response.request, response));
+    else reject(createError("Request failed with status code " + response.status, response.config, null, response.request, response));
 };
 
 },{"./createError":"5nVS9"}],"5nVS9":[function(require,module,exports) {
-'use strict';
-var enhanceError = require('./enhanceError');
+"use strict";
+var enhanceError = require("./enhanceError");
 /**
  * Create an Error with the specified message, config, error code, request and response.
  *
@@ -2013,45 +2011,43 @@ var enhanceError = require('./enhanceError');
 };
 
 },{"./enhanceError":"itUQr"}],"4WJjt":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 module.exports = utils.isStandardBrowserEnv() ? // Standard browser envs support document.cookie
-(function standardBrowserEnv() {
+function standardBrowserEnv() {
     return {
         write: function write(name, value, expires, path, domain, secure) {
             var cookie = [];
-            cookie.push(name + '=' + encodeURIComponent(value));
-            if (utils.isNumber(expires)) cookie.push('expires=' + new Date(expires).toGMTString());
-            if (utils.isString(path)) cookie.push('path=' + path);
-            if (utils.isString(domain)) cookie.push('domain=' + domain);
-            if (secure === true) cookie.push('secure');
-            document.cookie = cookie.join('; ');
+            cookie.push(name + "=" + encodeURIComponent(value));
+            if (utils.isNumber(expires)) cookie.push("expires=" + new Date(expires).toGMTString());
+            if (utils.isString(path)) cookie.push("path=" + path);
+            if (utils.isString(domain)) cookie.push("domain=" + domain);
+            if (secure === true) cookie.push("secure");
+            document.cookie = cookie.join("; ");
         },
         read: function read(name) {
-            var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+            var match = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
             return match ? decodeURIComponent(match[3]) : null;
         },
         remove: function remove(name) {
-            this.write(name, '', Date.now() - 86400000);
+            this.write(name, "", Date.now() - 86400000);
         }
     };
-})() : // Non standard browser env (web workers, react-native) lack needed support.
-(function nonStandardBrowserEnv() {
+}() : // Non standard browser env (web workers, react-native) lack needed support.
+function nonStandardBrowserEnv() {
     return {
-        write: function write() {
-        },
+        write: function write() {},
         read: function read() {
             return null;
         },
-        remove: function remove() {
-        }
+        remove: function remove() {}
     };
-})();
+}();
 
 },{"./../utils":"5By4s"}],"1I5TW":[function(require,module,exports) {
-'use strict';
-var isAbsoluteURL = require('../helpers/isAbsoluteURL');
-var combineURLs = require('../helpers/combineURLs');
+"use strict";
+var isAbsoluteURL = require("../helpers/isAbsoluteURL");
+var combineURLs = require("../helpers/combineURLs");
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -2066,7 +2062,7 @@ var combineURLs = require('../helpers/combineURLs');
 };
 
 },{"../helpers/isAbsoluteURL":"jD6NM","../helpers/combineURLs":"brOWK"}],"jD6NM":[function(require,module,exports) {
-'use strict';
+"use strict";
 /**
  * Determines whether the specified URL is absolute
  *
@@ -2080,7 +2076,7 @@ var combineURLs = require('../helpers/combineURLs');
 };
 
 },{}],"brOWK":[function(require,module,exports) {
-'use strict';
+"use strict";
 /**
  * Creates a new URL by combining the specified URLs
  *
@@ -2088,32 +2084,32 @@ var combineURLs = require('../helpers/combineURLs');
  * @param {string} relativeURL The relative URL
  * @returns {string} The combined URL
  */ module.exports = function combineURLs(baseURL, relativeURL) {
-    return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
+    return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
 };
 
 },{}],"kqDd5":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
 var ignoreDuplicateOf = [
-    'age',
-    'authorization',
-    'content-length',
-    'content-type',
-    'etag',
-    'expires',
-    'from',
-    'host',
-    'if-modified-since',
-    'if-unmodified-since',
-    'last-modified',
-    'location',
-    'max-forwards',
-    'proxy-authorization',
-    'referer',
-    'retry-after',
-    'user-agent'
+    "age",
+    "authorization",
+    "content-length",
+    "content-type",
+    "etag",
+    "expires",
+    "from",
+    "host",
+    "if-modified-since",
+    "if-unmodified-since",
+    "last-modified",
+    "location",
+    "max-forwards",
+    "proxy-authorization",
+    "referer",
+    "retry-after",
+    "user-agent"
 ];
 /**
  * Parse headers into an object
@@ -2128,35 +2124,34 @@ var ignoreDuplicateOf = [
  * @param {String} headers Headers needing to be parsed
  * @returns {Object} Headers parsed into an object
  */ module.exports = function parseHeaders(headers) {
-    var parsed = {
-    };
+    var parsed = {};
     var key;
     var val;
     var i;
     if (!headers) return parsed;
-    utils.forEach(headers.split('\n'), function parser(line) {
-        i = line.indexOf(':');
+    utils.forEach(headers.split("\n"), function parser(line) {
+        i = line.indexOf(":");
         key = utils.trim(line.substr(0, i)).toLowerCase();
         val = utils.trim(line.substr(i + 1));
         if (key) {
             if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) return;
-            if (key === 'set-cookie') parsed[key] = (parsed[key] ? parsed[key] : []).concat([
+            if (key === "set-cookie") parsed[key] = (parsed[key] ? parsed[key] : []).concat([
                 val
             ]);
-            else parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+            else parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
         }
     });
     return parsed;
 };
 
 },{"./../utils":"5By4s"}],"lxXtv":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 module.exports = utils.isStandardBrowserEnv() ? // Standard browser envs have full support of the APIs needed to test
 // whether the request URL is of the same origin as current location.
-(function standardBrowserEnv() {
+function standardBrowserEnv() {
     var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
+    var urlParsingNode = document.createElement("a");
     var originURL;
     /**
     * Parse a URL to discover it's components
@@ -2167,20 +2162,20 @@ module.exports = utils.isStandardBrowserEnv() ? // Standard browser envs have fu
         var href = url;
         if (msie) {
             // IE needs attribute set twice to normalize properties
-            urlParsingNode.setAttribute('href', href);
+            urlParsingNode.setAttribute("href", href);
             href = urlParsingNode.href;
         }
-        urlParsingNode.setAttribute('href', href);
+        urlParsingNode.setAttribute("href", href);
         // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
         return {
             href: urlParsingNode.href,
-            protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+            protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
             host: urlParsingNode.host,
-            search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-            hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+            search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
+            hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
             hostname: urlParsingNode.hostname,
             port: urlParsingNode.port,
-            pathname: urlParsingNode.pathname.charAt(0) === '/' ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
+            pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
         };
     }
     originURL = resolveURL(window.location.href);
@@ -2193,15 +2188,15 @@ module.exports = utils.isStandardBrowserEnv() ? // Standard browser envs have fu
         var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
         return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
     };
-})() : // Non standard browser envs (web workers, react-native) lack needed support.
-(function nonStandardBrowserEnv() {
+}() : // Non standard browser envs (web workers, react-native) lack needed support.
+function nonStandardBrowserEnv() {
     return function isURLSameOrigin() {
         return true;
     };
-})();
+}();
 
 },{"./../utils":"5By4s"}],"kjMy2":[function(require,module,exports) {
-'use strict';
+"use strict";
 /**
  * A `Cancel` is an object that is thrown when an operation is canceled.
  *
@@ -2211,20 +2206,20 @@ module.exports = utils.isStandardBrowserEnv() ? // Standard browser envs have fu
     this.message = message;
 }
 Cancel.prototype.toString = function toString() {
-    return 'Cancel' + (this.message ? ': ' + this.message : '');
+    return "Cancel" + (this.message ? ": " + this.message : "");
 };
 Cancel.prototype.__CANCEL__ = true;
 module.exports = Cancel;
 
 },{}],"a0VmF":[function(require,module,exports) {
-'use strict';
+"use strict";
 module.exports = function isCancel(value) {
     return !!(value && value.__CANCEL__);
 };
 
 },{}],"b85oP":[function(require,module,exports) {
-'use strict';
-var utils = require('../utils');
+"use strict";
+var utils = require("../utils");
 /**
  * Config-specific merge-function which creates a new config-object
  * by merging two configuration objects together.
@@ -2234,14 +2229,11 @@ var utils = require('../utils');
  * @returns {Object} New object resulting from merging config2 to config1
  */ module.exports = function mergeConfig(config1, config2) {
     // eslint-disable-next-line no-param-reassign
-    config2 = config2 || {
-    };
-    var config = {
-    };
+    config2 = config2 || {};
+    var config = {};
     function getMergedValue(target, source) {
         if (utils.isPlainObject(target) && utils.isPlainObject(source)) return utils.merge(target, source);
-        else if (utils.isPlainObject(source)) return utils.merge({
-        }, source);
+        else if (utils.isPlainObject(source)) return utils.merge({}, source);
         else if (utils.isArray(source)) return source.slice();
         return source;
     }
@@ -2265,32 +2257,32 @@ var utils = require('../utils');
         else if (prop in config1) return getMergedValue(undefined, config1[prop]);
     }
     var mergeMap = {
-        'url': valueFromConfig2,
-        'method': valueFromConfig2,
-        'data': valueFromConfig2,
-        'baseURL': defaultToConfig2,
-        'transformRequest': defaultToConfig2,
-        'transformResponse': defaultToConfig2,
-        'paramsSerializer': defaultToConfig2,
-        'timeout': defaultToConfig2,
-        'timeoutMessage': defaultToConfig2,
-        'withCredentials': defaultToConfig2,
-        'adapter': defaultToConfig2,
-        'responseType': defaultToConfig2,
-        'xsrfCookieName': defaultToConfig2,
-        'xsrfHeaderName': defaultToConfig2,
-        'onUploadProgress': defaultToConfig2,
-        'onDownloadProgress': defaultToConfig2,
-        'decompress': defaultToConfig2,
-        'maxContentLength': defaultToConfig2,
-        'maxBodyLength': defaultToConfig2,
-        'transport': defaultToConfig2,
-        'httpAgent': defaultToConfig2,
-        'httpsAgent': defaultToConfig2,
-        'cancelToken': defaultToConfig2,
-        'socketPath': defaultToConfig2,
-        'responseEncoding': defaultToConfig2,
-        'validateStatus': mergeDirectKeys
+        "url": valueFromConfig2,
+        "method": valueFromConfig2,
+        "data": valueFromConfig2,
+        "baseURL": defaultToConfig2,
+        "transformRequest": defaultToConfig2,
+        "transformResponse": defaultToConfig2,
+        "paramsSerializer": defaultToConfig2,
+        "timeout": defaultToConfig2,
+        "timeoutMessage": defaultToConfig2,
+        "withCredentials": defaultToConfig2,
+        "adapter": defaultToConfig2,
+        "responseType": defaultToConfig2,
+        "xsrfCookieName": defaultToConfig2,
+        "xsrfHeaderName": defaultToConfig2,
+        "onUploadProgress": defaultToConfig2,
+        "onDownloadProgress": defaultToConfig2,
+        "decompress": defaultToConfig2,
+        "maxContentLength": defaultToConfig2,
+        "maxBodyLength": defaultToConfig2,
+        "transport": defaultToConfig2,
+        "httpAgent": defaultToConfig2,
+        "httpsAgent": defaultToConfig2,
+        "cancelToken": defaultToConfig2,
+        "socketPath": defaultToConfig2,
+        "responseEncoding": defaultToConfig2,
+        "validateStatus": mergeDirectKeys
     };
     utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
         var merge = mergeMap[prop] || mergeDeepProperties;
@@ -2301,25 +2293,23 @@ var utils = require('../utils');
 };
 
 },{"../utils":"5By4s"}],"9vgkY":[function(require,module,exports) {
-'use strict';
-var VERSION = require('../env/data').version;
-var validators = {
-};
+"use strict";
+var VERSION = require("../env/data").version;
+var validators = {};
 // eslint-disable-next-line func-names
 [
-    'object',
-    'boolean',
-    'number',
-    'function',
-    'string',
-    'symbol'
+    "object",
+    "boolean",
+    "number",
+    "function",
+    "string",
+    "symbol"
 ].forEach(function(type, i) {
     validators[type] = function validator(thing) {
-        return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+        return typeof thing === type || "a" + (i < 1 ? "n " : " ") + type;
     };
 });
-var deprecatedWarnings = {
-};
+var deprecatedWarnings = {};
 /**
  * Transitional option validator
  * @param {function|boolean?} validator - set to false if the transitional option has been removed
@@ -2328,15 +2318,15 @@ var deprecatedWarnings = {
  * @returns {function}
  */ validators.transitional = function transitional(validator, version, message) {
     function formatMessage(opt, desc) {
-        return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+        return "[Axios v" + VERSION + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
     }
     // eslint-disable-next-line func-names
     return function(value, opt, opts) {
-        if (validator === false) throw new Error(formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')));
+        if (validator === false) throw new Error(formatMessage(opt, " has been removed" + (version ? " in " + version : "")));
         if (version && !deprecatedWarnings[opt]) {
             deprecatedWarnings[opt] = true;
             // eslint-disable-next-line no-console
-            console.warn(formatMessage(opt, ' has been deprecated since v' + version + ' and will be removed in the near future'));
+            console.warn(formatMessage(opt, " has been deprecated since v" + version + " and will be removed in the near future"));
         }
         return validator ? validator(value, opt, opts) : true;
     };
@@ -2347,7 +2337,7 @@ var deprecatedWarnings = {
  * @param {object} schema
  * @param {boolean?} allowUnknown
  */ function assertOptions(options, schema, allowUnknown) {
-    if (typeof options !== 'object') throw new TypeError('options must be an object');
+    if (typeof options !== "object") throw new TypeError("options must be an object");
     var keys = Object.keys(options);
     var i = keys.length;
     while(i-- > 0){
@@ -2356,10 +2346,10 @@ var deprecatedWarnings = {
         if (validator) {
             var value = options[opt];
             var result = value === undefined || validator(value, opt, options);
-            if (result !== true) throw new TypeError('option ' + opt + ' must be ' + result);
+            if (result !== true) throw new TypeError("option " + opt + " must be " + result);
             continue;
         }
-        if (allowUnknown !== true) throw Error('Unknown option ' + opt);
+        if (allowUnknown !== true) throw Error("Unknown option " + opt);
     }
 }
 module.exports = {
@@ -2373,15 +2363,15 @@ module.exports = {
 };
 
 },{}],"45wzn":[function(require,module,exports) {
-'use strict';
-var Cancel = require('./Cancel');
+"use strict";
+var Cancel = require("./Cancel");
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
  *
  * @class
  * @param {Function} executor The executor function.
  */ function CancelToken(executor) {
-    if (typeof executor !== 'function') throw new TypeError('executor must be a function.');
+    if (typeof executor !== "function") throw new TypeError("executor must be a function.");
     var resolvePromise;
     this.promise = new Promise(function promiseExecutor(resolve) {
         resolvePromise = resolve;
@@ -2455,7 +2445,7 @@ var Cancel = require('./Cancel');
 module.exports = CancelToken;
 
 },{"./Cancel":"kjMy2"}],"dyQ8N":[function(require,module,exports) {
-'use strict';
+"use strict";
 /**
  * Syntactic sugar for invoking a function and expanding an array for arguments.
  *
@@ -2482,8 +2472,8 @@ module.exports = CancelToken;
 };
 
 },{}],"eyiLq":[function(require,module,exports) {
-'use strict';
-var utils = require('./../utils');
+"use strict";
+var utils = require("./../utils");
 /**
  * Determines whether the payload is an error thrown by Axios
  *
@@ -2500,13 +2490,13 @@ exports.interopDefault = function(a) {
     };
 };
 exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
+    Object.defineProperty(a, "__esModule", {
         value: true
     });
 };
 exports.exportAll = function(source, dest) {
     Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
         Object.defineProperty(dest, key, {
             enumerable: true,
             get: function() {
@@ -2523,6 +2513,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["fcvSp","gLLPy"], "gLLPy", "parcelRequire0b5b")
+},{}]},["8TtF2","gLLPy"], "gLLPy", "parcelRequire0b5b")
 
 //# sourceMappingURL=questionPage.4d6bcbeb.js.map

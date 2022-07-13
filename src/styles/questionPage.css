@@ -18,16 +18,17 @@ html {
     max-width:18%;
     height: auto;
     width: auto;
-    top: 21%;
-    left: 70%;
+    top: 23%;
+    left: 72%;
     z-index: 2;
 }
+
 .thoughtBox{
     position: absolute;
-    max-width: 99%;
+    max-width: 52%;
     height: auto;
     width: auto;
-    top: 3%;
+    top: 2%;
     left: 46%;
     z-index: auto;
 }
@@ -58,8 +59,8 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 10%;
-    top: 72%;
+    max-width: 11%;
+    top: 71%;
     left: 86%;
 }
 .jesus{
@@ -119,7 +120,7 @@ html {
     height: auto;
     width: auto;
     max-width: 16%;
-    top: 39%;
+    top: 38%;
     left: 45%;
     z-index: 2;
 }
@@ -128,7 +129,7 @@ html {
     height: auto;
     width: auto;
     max-width: 15%;
-    top: 39%;
+    top: 38%;
     left: 45%;
     z-index: 2;
 }
@@ -198,7 +199,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 12%;
+    max-width: 11%;
     top: 66%;
     left: 22%;
     z-index: 2;
@@ -207,7 +208,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 11%;
+    max-width: 10%;
     top: 66%;
     left: 22%;
     z-index: 2;
@@ -224,7 +225,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 12%;
+    max-width: 11%;
     top: 66%;
     left: 46%;
     z-index: 2;
@@ -233,7 +234,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 11%;
+    max-width: 10%;
     top: 66%;
     left: 46%;
     z-index: 2;
@@ -250,7 +251,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 15%;
+    max-width: 14%;
     top: 67%;
     left: 68%;
     z-index: 2;
@@ -259,7 +260,7 @@ html {
     position: absolute;
     height: auto;
     width: auto;
-    max-width: 14%;
+    max-width: 13%;
     top: 67%;
     left: 68%;
     z-index: 2;
@@ -324,53 +325,54 @@ html {
     left: 165px;
     z-index: 2;
 }
-.balk{
-    position: absolute;
-    max-width: 95%;
-    height: auto;
-    width: auto;
-    left: 55px;
-    top: 960px;
-    opacity: 65%;
-    /*width: 1800px;*/
-    z-index: 2;
-}
 .copyright2022{
     position: absolute;
-    max-width: 8%;
+    max-width: 10%;
     height: auto;
     width: auto;
-    left: 5%;
-    top: 91%;
-    opacity: 30%;
+    left: 6%;
+    top: 90%;
+    opacity: 25%;
     z-index: 2;
 }
 .copyrightMoodAndFood{
     position: absolute;
-    max-width: 12%;
+    max-width: 14%;
     height: auto;
     width: auto;
-    left: 43%;
+    left: 42%;
     top: 91%;
-    opacity: 30%;
+    opacity: 25%;
     z-index: 2;
+
 }
 .copyrightDesign{
     position: absolute;
     max-width: 12%;
     height: auto;
     width: auto;
-    left: 82%;
-    top: 90%;
-    opacity: 30%;
+    left: 81%;
+    top: 89%;
+    opacity: 25%;
     z-index: 2;
 }
+.balk{
+    position: absolute;
+    max-height: 11%;
+    height: auto;
+    width: auto;
+    left: 5%;
+    top: 88%;
+    opacity: 10%;
+    z-index: 1;
+}
+
 .recipeCard{
     position: absolute;
-    max-width: 38%;
+    max-width: 31%;
     height: auto;
     width: auto;
     top: 1%;
-    left: 30%;
+    left: 34%;
     z-index: 3;
 }

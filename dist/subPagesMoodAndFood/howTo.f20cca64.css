@@ -1,79 +1,87 @@
 html {
-    background:url("https://raw.githubusercontent.com/TomKnn/EindopdrachtMoodAndFood/master/assets/backgroundFinal.png") no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    /*overflow: hidden;*/
+  height: 100vh;
+  background: url("https://raw.githubusercontent.com/TomKnn/EindopdrachtMoodAndFood/master/assets/backgroundFinal.png") center / cover no-repeat fixed;
+  overflow: hidden;
 }
+
 .logo {
-    position: absolute;
-    max-width: 20%;
-    width: auto;
-    height: auto;
-    top: 100px;
-    left: 31px;
-    z-index: 2;
+  max-width: 18%;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  position: absolute;
+  top: 100px;
+  left: 31px;
 }
-.olive{
-    position: absolute;
-    max-width:20%;
-    height: auto;
-    width: auto;
-    top: 30%;
-    left: 1%;
-    z-index: 2;
+
+.olive {
+  max-width: 19%;
+  height: auto;
+  width: auto;
+  z-index: 2;
+  position: absolute;
+  top: 36%;
+  left: 1%;
 }
-.enjoy{
-    position: absolute;
-    max-width:15%;
-    rotation:30grad;
-    height:auto;
-    width: auto;
-    left:21%;
-    top: 38%;
-    z-index: 2;
+
+.enjoy {
+  max-width: 15%;
+  rotation: 30grad;
+  height: auto;
+  width: auto;
+  z-index: 2;
+  position: absolute;
+  top: 41%;
+  left: 19%;
 }
-.block{
-    position: absolute;
-    max-width: 21%;
-    height:auto;
-    width: auto;
-    top: 0%;
-    left: 1%;
-    opacity: 70%;
-    z-index: -1;
+
+.block {
+  max-width: 20%;
+  height: auto;
+  width: auto;
+  opacity: .7;
+  z-index: -1;
+  position: absolute;
+  top: -1%;
+  left: 1%;
 }
-.howToBig{
-    position: absolute;
-    max-width: 23%;
-    height:auto;
-    width: auto;
-    left:25%;
-    top:20%;
+
+.howToBig {
+  max-width: 23%;
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 24%;
+  left: 23%;
 }
+
 .tekst {
-    position: absolute;
-    max-width: 68%;
-    height: auto;
-    width: auto;
-    opacity: 90%;
-    left: 25%;
-    top: 31%;
+  max-width: 68%;
+  height: auto;
+  width: auto;
+  opacity: .9;
+  position: absolute;
+  top: 37%;
+  left: 22%;
 }
-.emojis{
-    position: absolute;
-    max-width: 48%;
-    height:auto;
-    width: auto;
-    left:38%;
-    top: 37%;
+
+.emojis {
+  max-width: 48%;
+  height: auto;
+  width: auto;
+  z-index: 2;
+  position: absolute;
+  top: 40%;
+  left: 34%;
 }
-.kader{
-    position: absolute;
-    max-width: 76%;
-    height:auto;
-    width: auto;
-    left:21%;
-    top: 38%;
+
+.kader {
+  max-width: 73%;
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 42%;
+  left: 20%;
 }
 
 /*# sourceMappingURL=howTo.f20cca64.css.map */
